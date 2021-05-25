@@ -178,9 +178,9 @@ $hotdeal=DB::table('products')->join('brands','products.brand_id','brands.id')->
                                             </div>
                                             <div class="product_content">
                                             @if($row->discount_price == NULL)
-                                                <br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span>
+                                                <br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span><br>
                                             @else
-                                             <div class="product_price discount">${{ $row->discount_price }}<span>${{ $row->selling_price }}</span></div>
+                                             <div class="text-danger">${{ $row->discount_price }}</div>
                                             @endif
 
                            <div class="product_name"><div><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">
@@ -301,7 +301,7 @@ $hotdeal=DB::table('products')->join('brands','products.brand_id','brands.id')->
 
 
     <div class="banner_2">
-        <div class="banner_2_background" style="background-image:url({{asset('public/frontend/images/banner_2_background.jpg')}})"></div>
+       <!--  <div class="banner_2_background" style="background-image:url({{asset('public/frontend/images/banner_2_background.jpg')}})"></div> -->
         <div class="banner_2_container">
             <div class="banner_2_dots"></div>
             <!-- Banner 2 Slider -->
@@ -326,7 +326,7 @@ $hotdeal=DB::table('products')->join('brands','products.brand_id','brands.id')->
                                 </div>
                                 <div class="col-lg-8 col-md-6 fill_height">
                                     <div class="banner_2_image_container">
-                                        <div class="banner_2_image"><img src="{{asset($mid->image_one)}}"style="height: 300px; width: 330px;" alt=""></div>
+                                        <div class="banner_2_image"><img src="{{asset($mid->image_two)}}"style="height: 500px; width: 800px;" alt=""></div>
                                     </div>
                                 </div>
                             </div>

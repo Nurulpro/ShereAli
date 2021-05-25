@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
-
+@php
+$category=DB::table('categories')->get();
+@endphp
 
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/shop_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/shop_responsive.css')}}">
@@ -29,40 +31,38 @@
 
 							<!-- Categories Menu -->
 
-							<div class="cat_menu_container">
-								<div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
-									<div class="cat_burger"><span></span><span></span><span></span></div>
-									<div class="cat_menu_text">categories</div>
-								</div>
+							  <!-- Categories Menu -->
 
-								<ul class="cat_menu">
-									<li><a href="#">Computers & Laptops <i class="fas fa-chevron-right ml-auto"></i></a></li>
-									<li><a href="#">Cameras & Photos<i class="fas fa-chevron-right"></i></a></li>
-									<li class="hassubs">
-										<a href="#">Hardware<i class="fas fa-chevron-right"></i></a>
-										<ul>
-											<li class="hassubs">
-												<a href="#">Menu Item<i class="fas fa-chevron-right"></i></a>
-												<ul>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-													<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-												</ul>
-											</li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-											<li><a href="#">Menu Item<i class="fas fa-chevron-right"></i></a></li>
-										</ul>
-									</li>
-									<li><a href="#">Smartphones<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">TV & Audio<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Gadgets<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Car Electronics<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Video Games & Consoles<i class="fas fa-chevron-right"></i></a></li>
-									<li><a href="#">Accessories<i class="fas fa-chevron-right"></i></a></li>
-								</ul>
-							</div>
+                            <div class="cat_menu_container">
+                                <div class="cat_menu_title d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cat_burger"><span></span><span></span><span></span></div>
+                                    <div class="cat_menu_text">categories</div>
+                                </div>
+                         
+                                <ul class="cat_menu">
+                                   @foreach($category as $cat)
+                                    <li class="hassubs">
+                                    <a href="{{url('products/'.$cat->id)}}">{{ $cat-> category_name}}<i class="fas fa-chevron-right"></i></a>
+                                    <ul>
+                                    
+                                            @php
+                                            $subcategory=DB::table('subcategories')->where('category_id',$cat->id)->get();
+                                            @endphp
+
+                                            @foreach($subcategory as $row)
+                                            <li class="hassubs">
+                                            <a href="{{url('products/'.$row->id)}}">{{$row->subcategory_name}}<i class="fas fa-chevron-right"></i></a>
+                                               
+                                            </li>
+                                           @endforeach
+                                           
+                                        </ul>
+                                    </li>
+                                   @endforeach
+                                </ul>
+                            </div>
+
+
 
 							<!-- Main Nav Menu -->
 
@@ -229,7 +229,7 @@
 		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="images/shop_background.jpg"></div>
 		<div class="home_overlay"></div>
 		<div class="home_content d-flex flex-column align-items-center justify-content-center">
-			<h2 class="home_title">Smartphones</h2>
+			<h2 class="home_title">Avilable Products</h2>
 		</div>
 	</div>
 
@@ -243,6 +243,7 @@
 					<!-- Shop Sidebar -->
 					<div class="shop_sidebar">
 						<div class="sidebar_section">
+
 							<div class="sidebar_title">Categories</div>
 							<ul class="sidebar_categories">
 								<li><a href="#">Computers & Laptops</a></li>
@@ -254,6 +255,7 @@
 								<li><a href="#">Car Electronics</a></li>
 								<li><a href="#">Video Games & Consoles</a></li>
 								<li><a href="#">Accessories</a></li>
+
 							</ul>
 						</div>
 						<div class="sidebar_section filter_by_section">
@@ -323,9 +325,14 @@
 						
 							<!-- Product Item -->
 							<div class="product_item is_new">
-								<div class="product_border"></div>
-								<div class="product_image d-flex flex-column align-items-center justify-content-center"><img src="{{asset($row->image_one)}}"style="height: 100px", width="100px" alt=""></div>
+				<div class="product_border"></div>
+
+	<div class="product_image d-flex flex-column align-items-center justify-content-center"><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}"><img src="{{asset($row->image_one)}}"style="height: 130px", width="140px" alt=""></a></div>
+
 								<div class="product_content">
+
+									  
+
 
 									       @if($row->discount_price == NULL)
                                                 <br><span class="text-danger"><b> ${{ $row->selling_price }} </b></span>

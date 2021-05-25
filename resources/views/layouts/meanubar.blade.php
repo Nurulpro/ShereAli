@@ -1,6 +1,8 @@
 @php
 $category=DB::table('categories')->get();
 
+$featured=DB::table('products')->where('status',1)->orderBy('id','desc')->limit(1)->get();
+
 @endphp
         <nav class="main_nav">
             <div class="container">
@@ -16,11 +18,11 @@ $category=DB::table('categories')->get();
                                     <div class="cat_burger"><span></span><span></span><span></span></div>
                                     <div class="cat_menu_text">categories</div>
                                 </div>
-
+                         
                                 <ul class="cat_menu">
                                    @foreach($category as $cat)
                                     <li class="hassubs">
-                                    <a href="#">{{ $cat-> category_name}}<i class="fas fa-chevron-right"></i></a>
+                                    <a href="{{url('products/'.$cat->id)}}">{{ $cat-> category_name}}<i class="fas fa-chevron-right"></i></a>
                                     <ul>
                                     
                                             @php
@@ -205,10 +207,10 @@ $category=DB::table('categories')->get();
     $slider=DB::table('products')->join('brands','products.brand_id','brands.id')->select('products.*','brands.brand_name')->where('products.main_slider',1)->orderBy('id','DESC')->first()
     @endphp
                   <div class="banner">
-        <div class="banner_background" style="background-image:url({{ asset('public/frontend/images/banner_background.jpg') }})"></div>
+        <!-- <div class="banner_background" style="background-image:url({{ asset('public/frontend/images/banner_background.jpg') }})"></div> -->
         <div class="container fill_height">
             <div class="row fill_height">
-                <div class="banner_product_image"><img src="{{ asset($slider->image_three)}}" alt=""></div>
+                <div class="banner_product_image"><img src="{{ asset($slider->image_one)}}" style="height: 450px; weidth: 1024px;" alt=""></div>
                 <div class="col-lg-5 offset-lg-4 fill_height">
                     <div class="banner_content">
 
@@ -229,8 +231,10 @@ $category=DB::table('categories')->get();
                           
                             
                         </div>
+                        @foreach($featured as $row) 
                         <div class="banner_product_name"></div>
-                        <div class="button banner_button"><a href="#">Shop Now</a></div>
+                        <div class="button banner_button"><a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}">Shop Now</a></div>
+                        @endforeach
                     </div>
                 </div>
             </div>
