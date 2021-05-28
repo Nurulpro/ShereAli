@@ -7,21 +7,21 @@
       <div class="row">
 
 
-
         <!-- Images -->
-        <div class="xzoom-thumbs" class="col-lg-2 order-lg-1 order-2">
+        <div  class="zoom_02" class="col-lg-2 order-lg-1 order-2">
           <ul class="image_list">
          
-            <li data-image="{{ asset($product->image_one) }}"><img class="xzoom-gallery" width="100" src="{{ asset($product->image_one) }}" alt=""></li>
-            <li data-image="{{ asset($product->image_two) }}"><img class="xzoom-gallery" width="100" src="{{ asset($product->image_two) }}"  alt=""></li>
-            <li data-image="{{ asset($product->image_three) }}"><img class="xzoom-gallery" width="100" src="{{ asset($product->image_three) }}" alt=""></li>
+            <li data-image="{{ asset($product->image_one) }}"><img  width="100" src="{{ asset($product->image_one) }}" alt=""></li>
+            <li data-image="{{ asset($product->image_two) }}"><img  width="100" src="{{ asset($product->image_two) }}"  alt=""></li>
+            <li data-image="{{ asset($product->image_three) }}"><img  width="100" src="{{ asset($product->image_three) }}" alt=""></li>
           </ul>
         </div>
 
         <!-- Selected Image -->
         <div class="col-lg-4 order-lg-2 order-1">
 
-          <div class="image_selected"><img class="xzoom" src="{{ asset($product->image_one) }}" xpreview="path/to/preview_image_01.jpg" alt=""></div>
+        <div class="image_selected"><img class="zoom_02" src="{{ asset($product->image_one) }}" xpreview="{{ asset($product->image_one) }}" alt="product_img"></div>
+    
           
 
         </div>
@@ -151,10 +151,8 @@
 <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5dff5c0e258810001231d9cc&product=inline-share-buttons&cms=sop' async='async'></script>
 
 
-    <script>
-$(".xzoom").xzoom({tint: '#333', Xoffset: 15});
-</script>
-     
+
+  
 
 
 @endsection

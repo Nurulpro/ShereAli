@@ -23,24 +23,7 @@
 <!-- <link rel="stylesheet" href="sweetalert2.min.css">-->
  <!-- get jQuery from the google apis -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- get jQuery from the google apis or use your own -->
 
-
-<!-- start for zoom -->
-
-<!-- get jQuery from the google apis -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
-<!-- CSS STYLE-->
-<link rel="stylesheet" type="text/css" href="{{asset('public/frontend/styles/xzoom.css')}}" media="all" />
-
-<!-- XZOOM JQUERY PLUGIN  -->
-<script type="text/javascript" src="{{asset('public/frontend/js/xzoom.min.js')}}"></script>
-<!-- end for zoom -->
-
-
- <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
@@ -373,6 +356,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{asset('public/frontend/js/product_custom.js')}}"></script>
         <!-- XZOOM JQUERY PLUGIN  -->
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!-- get jQuery from the google apis or use your own -->
+
+
+
+<script src="{{asset('public/frontend/js/jquery.elevatezoom.js')}}" type="text/javascript"></script>
+<script src="{{asset('public/frontend/js/jquery.elevateZoom-3.0.8.min.js')}}" type="text/javascript"></script>
+
+
+ <script src="https://js.stripe.com/v3/"></script>
+
+
+
           <script>
         @if(Session::has('messege'))
           var type="{{Session::get('alert-type','info')}}"
@@ -391,6 +387,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                   break;
           }
         @endif
+
+        $(".zoom_02").elevateZoom({tint:true, tintColour:'#F90', tintOpacity:0.5});
      </script> 
 
 </body>
