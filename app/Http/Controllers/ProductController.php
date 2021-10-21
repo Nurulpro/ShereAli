@@ -3,26 +3,39 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\Model\Admin\RecentView;
+use Illuminate\Support\Facades\DB;
+
 use Cart;
 use response;
 class ProductController extends Controller
 {
-    public function productdetails($id,$product_name)
+    public function productdetails(Request $request ,$id,$product_name )
     {
+
+    //   $id = auth()->user()->id;
+    //  $customerId = '{{auth("customer")->user()->id }}';
+
+    //  $recent_view =  new RecentView();
+    //  $recent_view->product_id = $request->$id;
+    //  $recent_view->user_id = 1;
+    // $recent_view->save;
+
+  
         $product=DB::table('products')
     	->join('categories','products.category_id','categories.id')
     	->join('subcategories','products.subcategory_id','subcategories.id')
     	->join('brands','products.brand_id','brands.id')
     	->select('products.*','categories.category_name','subcategories.subcategory_name','brands.brand_name')->where('products.id',$id)->first();
 
-
-
-    	$color=$product->product_color;
+      $color=$product->product_color;
     	$product_color = explode(',', $color);
 
     	$size=$product->product_size;
     	$product_size = explode(',', $size);
+
+    
+
       return  view('pages/productview',compact('product','product_color','product_size'));
     
 

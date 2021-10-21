@@ -22,9 +22,7 @@
 
         <div class="image_selected"><img class="zoom_02" src="{{ asset($product->image_one) }}" xpreview="{{ asset($product->image_one) }}" alt="product_img"></div>
     
-          
-
-        </div>
+           </div>
 
         <!-- Description -->
         <div class="col-lg-5 order-3">

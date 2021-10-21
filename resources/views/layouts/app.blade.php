@@ -33,6 +33,10 @@ $settings=DB::table('settings')->first();
 $shippingcharge=$settings->shipping_charge;
 @endphp
 
+@php  
+$cat =DB::table('categories')->get();
+@endphp  
+
 
 <div class="super_container">
     
@@ -47,7 +51,7 @@ $shippingcharge=$settings->shipping_charge;
                 <div class="row">
                     <div class="col d-flex flex-row">
                         <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend/images/phone.png')}}" alt=""></div>+8801821554477</div>
-                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">shereali@gmail.com</a></div>
+                        <div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{asset('public/frontend/images/mail.png')}}" alt=""></div><a href="mailto:fastsales@gmail.com">sherealibd@gmail.com</a></div>
                         <div class="top_bar_content ml-auto">
                             <div class="top_bar_menu">
                                 <ul class="standard_dropdown top_bar_dropdown">
@@ -87,7 +91,7 @@ $shippingcharge=$settings->shipping_charge;
                                         <ul>
                                             <li><a href="{{route('user.Wishlist')}}">Wishlist</a></li>
                                             <li><a href="{{route('user.checkout')}}">CheckOut</a></li>
-                                            <li><a href="#">Others</a></li>
+                                            <li><a href="{{ route('user.logout')}}" class="btn btn_danger">Logout</a></li>
                                         </ul>
                                     </li>
                                     <li>
@@ -134,13 +138,11 @@ $shippingcharge=$settings->shipping_charge;
                                                 <span class="custom_dropdown_placeholder clc">All Categories</span>
                                                 <i class="fas fa-chevron-down"></i>
                                                 <ul class="custom_list clc">
-                                      @php  
-                                         $category=DB::table('categories')->get();
-                                      @endphp              
+                                               
                         
 
-                        @foreach($category as $row)
-                        <li><a class="clc" href="#">{{$row->category_name}}</a></li>
+                        @foreach($cat as $row)
+                        <li><a class="custom_list clc" href="#">{{$row->category_name}}</a></li>
                         @endforeach
                         
                                                 </ul>
@@ -291,7 +293,7 @@ $shippingcharge=$settings->shipping_charge;
                     
                     <div class="copyright_container d-flex flex-sm-row flex-column align-items-center justify-content-start">
                         <div class="copyright_content"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://nurulpro.com" target="_blank">Nurul Islam</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 </div>
                         <div class="logos ml-sm-auto">
@@ -356,8 +358,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         <script src="{{asset('public/frontend/js/product_custom.js')}}"></script>
         <!-- XZOOM JQUERY PLUGIN  -->
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<!-- get jQuery from the google apis or use your own -->
+
+
 
 
 
@@ -371,19 +373,19 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
           <script>
         @if(Session::has('messege'))
-          var type="{{Session::get('alert-type','info')}}"
+          var type="{{session::get('alert-type','info')}}"
           switch(type){
               case 'info':
-                   toastr.info("{{ Session::get('messege') }}");
+                   toastr.info("{{ session::get('messege') }}");
                    break;
               case 'success':
-                  toastr.success("{{ Session::get('messege') }}");
+                  toastr.success("{{ session::get('messege') }}");
                   break;
               case 'warning':
-                 toastr.warning("{{ Session::get('messege') }}");
+                 toastr.warning("{{ session::get('messege') }}");
                   break;
               case 'error':
-                  toastr.error("{{ Session::get('messege') }}");
+                  toastr.error("{{ session::get('messege') }}");
                   break;
           }
         @endif

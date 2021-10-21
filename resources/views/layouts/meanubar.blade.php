@@ -124,7 +124,7 @@ $featured=DB::table('products')->where('status',1)->orderBy('id','desc')->limit(
                             
                             <div class="page_menu_search">
                                 <form action="#">
-                                    <input type="search" required="required" class="page_menu_search_input" placeholder="Search for products...">
+                                    <input type="search" required="required" class="page_menu_search_input" placeholder="">
                                 </form>
                             </div>
                             <ul class="page_menu_nav">

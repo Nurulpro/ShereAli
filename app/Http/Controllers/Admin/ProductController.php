@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
-use Image;
+use Illuminate\Support\Facades\DB;
+use Intervention\Image\Facades\Image;
+use PhpParser\Node\Stmt\If_;
+
 class ProductController extends Controller
 {
       public function __construct()
@@ -148,6 +150,10 @@ class ProductController extends Controller
                 ->select('products.*','categories.category_name','brands.brand_name','subcategories.subcategory_name')
                 ->where('products.id',$id)
                 ->first();
+
+                
+
+                
         return view('admin.product.show',compact('product'));
 
     }
