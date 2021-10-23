@@ -119,7 +119,7 @@ $cat =DB::table('categories')->get();
                     <!-- Logo -->
                     <div class="col-lg-2 col-sm-2 col-3 order-1">
                         <div class="logo_container">
-                            <div class="logo"><a href="{{ url('/') }}">ShereAli</a></div>
+                            <div class="logo"><a href="{{ url('/') }}">ShereAli.com</a></div>
                         </div>
                     </div>
 
